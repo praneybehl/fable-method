@@ -33,11 +33,20 @@ ask ──► 0 classify ──► 1 define done ──► 2 evidence ──► 
                                            before change
 ```
 
-Every arrow has tie-breaks, escape hatches, and hard bounds (3 failed verify cycles → stop and hand back; 2 fruitless lookups → stop searching; can't name a verification → ask one pointed question). The full method is [SKILL.md](SKILL.md), ~110 lines, every sentence load-bearing.
+Every arrow has tie-breaks, escape hatches, and hard bounds (3 failed verify cycles → stop and hand back; 2 fruitless lookups → stop searching; can't name a verification → ask one pointed question). The full method is [skills/fable-method/SKILL.md](skills/fable-method/SKILL.md), ~110 lines, every sentence load-bearing.
 
 ## Install
 
-**Claude Code**, one command:
+**As a Claude Code plugin (recommended).** Inside any Claude Code session:
+
+```
+/plugin marketplace add Sahir619/fable-method
+/plugin install fable@fable-method
+```
+
+All three skills arrive namespaced (`/fable:fable-method`, `/fable:fable-loop`, `/fable:fable-judge`), versioned, and updatable via `/plugin marketplace update`.
+
+**As standalone skills** (un-namespaced `/fable-method` etc.):
 
 ```bash
 git clone https://github.com/Sahir619/fable-method && bash fable-method/install.sh
@@ -96,15 +105,21 @@ The rest of the evidence, each round with its raw transcript: the [cross-model t
 
 ## Repo layout
 
+The repo is a Claude Code **plugin** (and its own marketplace):
+
 ```
-SKILL.md                    the method (Claude Code skill, canonical)
-loop/SKILL.md               fable-loop: the orchestrated plan-execute-verify-audit workflow
-judge/SKILL.md              fable-judge: adversarial verification of finished work + trap suite
+.claude-plugin/
+  plugin.json               plugin manifest (name: fable)
+  marketplace.json          makes this repo installable via /plugin marketplace add
+skills/
+  fable-method/             the method (SKILL.md + references/)
+    references/
+      failure-modes.md      14 failure modes → the step that prevents each
+      examples.md           worked examples: trivial, question, task, plan-first
+  fable-loop/               the orchestrated plan-execute-verify-audit workflow
+  fable-judge/              adversarial verification of finished work + trap suite
 AGENTS.md                   the same method for any other harness
-install.sh / install.ps1    one-command install into ~/.claude/skills/
-references/
-  failure-modes.md          14 failure modes → the step that prevents each
-  examples.md               worked examples: trivial, question, task, plan-first
+install.sh / install.ps1    standalone-skill install into ~/.claude/skills/ (plugin preferred)
 eval/
   README.md                 methodology + how to reproduce
   RESULTS.md                dated round-by-round results log (wins, nulls, and failures)

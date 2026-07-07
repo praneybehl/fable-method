@@ -5,7 +5,7 @@ description: End-to-end orchestrated workflow that runs a task the way Fable ran
 
 # The Fable Loop
 
-This skill orchestrates the fable-method (read `~/.claude/skills/fable-method/SKILL.md` first; its rules govern every stage). The method says WHAT to check; this loop says WHO does the work: what runs in the main thread, what fans out to subagents, and what gets attacked before delivery.
+This skill orchestrates the fable-method: read its SKILL.md first; its rules govern every stage. It is installed alongside this skill (in this plugin's `skills/fable-method/` directory, or `~/.claude/skills/fable-method/` for manual installs). The method says WHAT to check; this loop says WHO does the work: what runs in the main thread, what fans out to subagents, and what gets attacked before delivery.
 
 **Gate first.** Trivial per the method's triviality gate: just do it, verify with the one obvious check, report in two sentences. No stages, no subagents. Everything else runs the four stages below in order.
 
