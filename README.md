@@ -12,7 +12,7 @@ Most agent instruction files tell the model *what to value* ("be careful, verify
 
 ## Results at a glance
 
-Eight eval rounds, 159 agent runs, blind LLM judges that verify by diffing and executing, never by reading reports. Full log: [`eval/RESULTS.md`](eval/RESULTS.md) · raw judge outputs: [`eval/results/`](eval/results/)
+Eight eval rounds, 159 agent runs, blind LLM judges that verify by diffing and executing, never by reading reports. **Read the evidence as stories: [`eval/cases/`](eval/cases/) has one case study per scenario (the exact problem, what each agent actually did, who passed); start with [the surprise trap](eval/cases/s2-surprise-trap.md).** Full log: [`eval/RESULTS.md`](eval/RESULTS.md) · raw judge outputs: [`eval/results/`](eval/results/)
 
 | What was measured | Without | With the method | Evidence |
 |---|---|---|---|
